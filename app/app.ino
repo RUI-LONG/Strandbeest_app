@@ -2,6 +2,7 @@
 //#include "MatrixMini.h"
 
 #include "movement.h"
+int roll;
 
 void setup()
 {
@@ -32,25 +33,31 @@ void setup()
   // standBy();
   // stretchB();
   // delay(1500);
-  // standBy();
-  // delay(1000);
-  // layDown();
-  // delay(1000);
 
-  // new
-  standBy();
-  delay(1000);
+  // walk
+  
+  // headDown();
+  // test(5);
+  // delay(500);
+  pushUp(5);
 }
 
 void loop()
 {
+  // Serial.print("Roll=");
+  // Serial.println(Mini.I2C1.MXmotion.getRoll());
+  // Serial.print("Pitch=");
+  // Serial.println(Mini.I2C1.MXmotion.getPitch());
+  // Serial.println("============");
+  // delay(100);
 
-  // standUp();
-  // delay(1500);
+  // delay(200);
+  // if (Mini.BTN1.get()){
+  //   walk();
+  // }
+  // if (Mini.BTN2.get()){
+  //   standBy();
+  // }
 
-  // yawn();
-  // delay(1000);
-  // standUp();
 
-  // pushUp(5);
 }
