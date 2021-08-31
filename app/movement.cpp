@@ -1,37 +1,74 @@
 #include "movement.h"
 
-void layDown() {
+void layDown(int ang) {
+  // Note: -40 <= ang <= 40
+  Cat.RightF(RFAB, RFHF+10-ang);
+  Cat.LeftF(LFAB, LFHF-10+ang);
+  delay(100);
+  Cat.RightB(RBAF, RBHB+ang);
+  Cat.LeftB(LBAF, LBHB-ang);
+}
 
-  Mini.I2C2.MXservo.setAngle(right_forward_hand, RFHF);
-  Mini.I2C2.MXservo.setAngle(left_forward_hand, LFHF);
-  Mini.I2C2.MXservo.setAngle(right_backward_hand, RBHB);
-  Mini.I2C2.MXservo.setAngle(left_backward_hand, LBHB);
+void standUp() {
+  Cat.RightF(-1, RFHB);
+  Cat.LeftF(-1, LFHB);
+  Cat.RightB(-1, RBHF);
+  Cat.LeftB(-1, LBHF);
+  delay(100);
 
-  delay(50);
-  Mini.I2C2.MXservo.setAngle(right_forward_arm, RFAB);
-  Mini.I2C2.MXservo.setAngle(left_forward_arm, LFAB);
-  Mini.I2C2.MXservo.setAngle(right_backward_arm, RBAF);
-  Mini.I2C2.MXservo.setAngle(left_backward_arm, LBAF);
-  delay(10);
+  Cat.RightF(110, -1);
+  Cat.LeftF(80, -1);
+  Cat.RightB(95, -1);
+  Cat.LeftB(90, -1);
+  delay(100);
+}
+
+void standBy() {
+  Cat.RightF(-1, RFHF+40);
+  Cat.LeftF(-1, LFHF-40);
+  Cat.RightB(-1, RBHB-40);
+  Cat.LeftB(-1, LBHB+40);
+  delay(100);
+
+  Cat.RightF(RFAM, -1);
+  Cat.LeftF(LFAM, -1);
+  Cat.RightB(RBAM, -1);
+  Cat.LeftB(LBAM, -1);
+  delay(100);
+}
+
+void shakeHand(int cnt){
+  layDown();
+  delay(500);
+  Cat.RightF(90, RFHB);
+  Cat.LeftF(90, LFHB);
+  delay(400);
+
+  for (int i = 0; i < cnt; i++) {
+    Cat.RightF(RFAF-20, RFHB-70);
+    delay(500);
+    Cat.RightF(90+20, RFHB);
+    delay(500);
+  }
 }
 
 void pushUp(int cnt) {
-  RightF(90, RFHB);
-  LeftF(90, LFHB);
-  RightB(RFAM, RBHF);
-  LeftB(LFAM, LBHF);
+  Cat.RightF(90, RFHB);
+  Cat.LeftF(90, LFHB);
+  Cat.RightB(RBAB, RBHF);
+  Cat.LeftB(LBAB, LBHF);
   delay(1000);
 
   for (int i = 0; i < cnt; i++) {
-    RightF(RFAM, 90);
-    LeftF(LFAM, 80);
+    Cat.RightF(RFAM, 90);
+    Cat.LeftF(LFAM, 80);
     delay(1200);
 
-    RightF(90, RFHB);
-    LeftF(90, LFHB);
+    Cat.RightF(90, RFHB);
+    Cat.LeftF(90, LFHB);
 
-    LeftB(150, -1);
-    RightB(40, -1);
+    Cat.LeftB(150, -1);
+    Cat.RightB(40, -1);
     delay(1200);
   }
   delay(10);
@@ -39,74 +76,6 @@ void pushUp(int cnt) {
 }
 
 
-void standUp() {
-  Mini.I2C2.MXservo.setAngle(right_forward_hand, RFHB);
-  Mini.I2C2.MXservo.setAngle(left_forward_hand, LFHB);
-  Mini.I2C2.MXservo.setAngle(right_backward_hand, RBHF);
-  Mini.I2C2.MXservo.setAngle(left_backward_hand, LBHF);
-  delay(100);
-  Mini.I2C2.MXservo.setAngle(right_forward_arm, 90);
-  Mini.I2C2.MXservo.setAngle(left_forward_arm, 90);
-  Mini.I2C2.MXservo.setAngle(right_backward_arm, 90);
-  Mini.I2C2.MXservo.setAngle(left_backward_arm, 90);
-
-  delay(100);
-}
-
-void standBy() {
-  Mini.I2C2.MXservo.setAngle(right_forward_hand, RFHF+40);
-  Mini.I2C2.MXservo.setAngle(left_forward_hand, LFHF-40);
-  Mini.I2C2.MXservo.setAngle(right_backward_hand, RBHB-40);
-  Mini.I2C2.MXservo.setAngle(left_backward_hand, LBHB+40);
-  delay(100);
-  Mini.I2C2.MXservo.setAngle(right_forward_arm, RFAM);
-  Mini.I2C2.MXservo.setAngle(left_forward_arm, LFAM);
-  Mini.I2C2.MXservo.setAngle(right_backward_arm, RBAM);
-  Mini.I2C2.MXservo.setAngle(left_backward_arm, LBAM);
-  delay(100);
-}
-
-void walk() {
-  // TODO
-  // standBy();
-  // Mini.I2C2.MXservo.setAngle(right_backward_arm, RBAF);
-  // Mini.I2C2.MXservo.setAngle(left_forward_arm, LFAM-20);
-
-  // Mini.I2C2.MXservo.setAngle(left_forward_hand, LFHF-20);
-  // Mini.I2C2.MXservo.setAngle(right_backward_hand, RBHB);
-  // delay(150);
-  // Mini.I2C2.MXservo.setAngle(left_forward_hand, LFHF-40);
-
-  // Mini.I2C2.MXservo.setAngle(right_forward_arm, RFAB);
-  // Mini.I2C2.MXservo.setAngle(right_forward_hand, RFHF+20);
-
-  // delay(150);
-  // Mini.I2C2.MXservo.setAngle(left_forward_arm, LFAM+20);
-  // Mini.I2C2.MXservo.setAngle(right_forward_arm, RFAM+20);
-  // Mini.I2C2.MXservo.setAngle(left_backward_arm, LBAM-20);
-
-  // Mini.I2C2.MXservo.setAngle(left_backward_hand, LBHB);
-  // Mini.I2C2.MXservo.setAngle(right_backward_hand, RBHB-40);
-
-  // delay(150);
-  // Mini.I2C2.MXservo.setAngle(right_forward_hand, RFHF+60);
-  // Mini.I2C2.MXservo.setAngle(left_forward_hand, LFHF-40);
-
-  // delay(150);
-  // Mini.I2C2.MXservo.setAngle(right_backward_arm, RBAM);
-
-  // Mini.I2C2.MXservo.setAngle(left_backward_hand, LBHB+40);
-
-  // delay(150);
-  // Mini.I2C2.MXservo.setAngle(right_forward_arm, RFAM);
-
-  // Mini.I2C2.MXservo.setAngle(right_forward_hand, RFHF+40);
-
-  // delay(150);
-  // Mini.I2C2.MXservo.setAngle(left_forward_arm, LFAM);
-  // Mini.I2C2.MXservo.setAngle(left_backward_arm, LBAM);
-
-}
 
 void wiggleTail() {
   for (int i = 150; i > 30; i--) {
@@ -120,28 +89,6 @@ void wiggleTail() {
     delay(5);
   }
   delay(50);
-}
-
-void shakeHand(){
-  layDown();
-  delay(500);
-  Mini.I2C2.MXservo.setAngle(right_forward_arm, 90);
-  Mini.I2C2.MXservo.setAngle(right_forward_hand, RFHB);
-
-  Mini.I2C2.MXservo.setAngle(left_forward_arm, 90);
-  Mini.I2C2.MXservo.setAngle(left_forward_hand, LFHB);
-
-  delay(400);
-
-  for (int i = 0; i < 4; i++) {
-    Mini.I2C2.MXservo.setAngle(right_forward_arm, RFAF-20);
-    Mini.I2C2.MXservo.setAngle(right_forward_hand, RFHB-70);
-
-    delay(500);
-    Mini.I2C2.MXservo.setAngle(right_forward_arm, 90+20);
-    Mini.I2C2.MXservo.setAngle(right_forward_hand, RFHB);
-    delay(500);
-  }
 }
 
 void stretchF(){
@@ -174,22 +121,21 @@ void stretchB(){
   }
 }
 
-
-void warmUp(){
-
+void warmUp(int ang){
+  standBy();
   for (int i = 0; i < 11; i++) {
-      Mini.I2C2.MXservo.setAngle(right_backward_hand, RBHB-50);
-      Mini.I2C2.MXservo.setAngle(left_forward_hand, LFHF-50);
+      Cat.RightB(-1, RBHB-ang);
+      Cat.LeftF(-1, LFHF-ang);
       delay(80);
-      Mini.I2C2.MXservo.setAngle(right_forward_hand, RFHF);
-      Mini.I2C2.MXservo.setAngle(left_backward_hand, LBHB);
+      Cat.RightF(-1, RFHF);
+      Cat.LeftB(-1, LBHB);
       delay(80);
 
-      Mini.I2C2.MXservo.setAngle(right_forward_hand, RFHF+50);
-      Mini.I2C2.MXservo.setAngle(left_backward_hand, LBHB+50);
+      Cat.RightF(-1, RFHF+ang);
+      Cat.LeftB(-1, LBHB+ang);
       delay(80);
-      Mini.I2C2.MXservo.setAngle(right_backward_hand, RBHB);
-      Mini.I2C2.MXservo.setAngle(left_forward_hand, LFHF);
+      Cat.RightB(-1, RBHB);
+      Cat.LeftF(-1, LFHF);
       delay(80);
   }
   standBy();
@@ -224,21 +170,7 @@ void flip(){
 
 }
 
-void headDown(){
-  // standBy before buttUp
-  int t = 30;
-  Mini.I2C2.MXservo.setAngle(right_forward_hand, RFHF+40-t);
-  Mini.I2C2.MXservo.setAngle(left_forward_hand, LFHF-40+t);
-  // Mini.I2C2.MXservo.setAngle(right_backward_hand, RBHB-40);
-  // Mini.I2C2.MXservo.setAngle(left_backward_hand, LBHB+40);
-  delay(100);
-  Mini.I2C2.MXservo.setAngle(right_forward_arm, RFAM-t);
-  Mini.I2C2.MXservo.setAngle(left_forward_arm, LFAM+t);
-  // Mini.I2C2.MXservo.setAngle(right_backward_arm, RBAM);
-  // Mini.I2C2.MXservo.setAngle(left_backward_arm, LBAM);
-  delay(100);
-}
-void test(int cnt){
+void pushUp2(int cnt){
   // standBy before buttUp
   standBy();
   Mini.I2C2.MXservo.setAngle(right_forward_arm, RFAM-10);
@@ -249,11 +181,48 @@ void test(int cnt){
   for (int i = 0; i < cnt; i++) {
     Mini.I2C2.MXservo.setAngle(right_forward_hand, RFHF+40+t);
     Mini.I2C2.MXservo.setAngle(left_forward_hand, LFHF-40-t);
-    delay(300);
+    delay(500);
     Mini.I2C2.MXservo.setAngle(right_forward_hand, RFHF);
     Mini.I2C2.MXservo.setAngle(left_forward_hand, LFHF);
-    delay(300);
+    delay(500);
   }
   standBy();
   delay(300);
+}
+
+void test(int cnt){
+  standUp();
+  delay(1000);
+  for (int i = 0; i < cnt; i++) {
+
+  headUp();
+  delay(1500);
+
+  headDown();
+  delay(1500);
+  }
+}
+
+void headDown(int ang){
+  Cat.RightF(RFAM+10,  RFHF+40);
+  Cat.LeftF(LFAM-10, LFHF-40);
+  Cat.RightB(RBAM-30, RBHF);
+  Cat.LeftB(LBAM+30, LBHF);
+}
+
+void headUp(int ang){
+  Cat.RightF(RFAM+40, RFHF+120);
+  Cat.LeftF(LFAM-40, LFHF-120);
+  Cat.RightB(RBAM, RBHF+80);
+  Cat.LeftB(LBAM, LBHF-80);
+}
+
+void balance(int ang){
+  if (ang > 20) ang = 20;
+  if (ang < -20) ang = -20;
+  Cat.RightF(RFAM+25-ang, RFHF+80-ang*2);
+  Cat.LeftF(LFAM-25+ang, LFHF-80+ang*2);
+
+  Cat.RightB(RBAM-15-ang, RBHF+40-ang*2);
+  Cat.LeftB(LBAM+15+ang, LBHF-40+ang*2);
 }

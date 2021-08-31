@@ -27,7 +27,7 @@
 #define RFHB 180
 
 #define LFAF 12
-#define LFAB 152
+#define LFAB 150
 #define LFAM 120 // 90+30
 
 #define LFHF 120
@@ -37,37 +37,55 @@
 #define RBAB 10
 #define RBAM 120 // 90+30
 
-#define RBHF 10
+#define RBHF 0
 #define RBHB 120
 
 #define LBAF 30
 #define LBAB 170
 #define LBAM 70 // 90-30+10
 
-#define LBHF 170
+#define LBHF 180
 #define LBHB 60
 
-void layDown();
-void standBy();
+
+// Basic Control
+class BodyParts {
+    private:
+        MatrixServo MiniI2C;
+    public:
+        void setMiniI2C(int i2cPort);
+        void LeftF(int arm_angle, int hand_angle, int t=0);
+        void LeftB(int arm_angle, int hand_angle, int t=0);
+        void RightF(int arm_angle, int hand_angle, int t=0);
+        void RightB(int arm_angle, int hand_angle, int t=0);
+};
+
+// Single Poses
+void layDown(int ang=20);
 void standUp();
-void yawn();
-void shakeHand();
+void standBy();
+
+// Combination Poses
+void shakeHand(int cnt=4);
+void pushUp(int cnt=5);
+
+
+// Needs Adjust
+void warmUp(int ang);
 void stretchF();
 void stretchB();
 
-// Needs Adjust
-void pushUp(int cnt);
-void warmUp();
-
 // TODO
 void walk();
-void headDown();
 void flip();
 void wiggleTail();
 
-void test(int cnt);
+void pushUp2(int cnt);
 
-void LeftF(int arm_angle, int hand_angle);
-void LeftB(int arm_angle, int hand_angle);
-void RightF(int arm_angle, int hand_angle);
-void RightB(int arm_angle, int hand_angle);
+void test(int cnt=1);
+void headDown(int ang=0);
+void headUp(int ang=0);
+
+void balance(int ang=0);
+
+extern BodyParts Cat;

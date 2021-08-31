@@ -1,22 +1,21 @@
-//#include <Arduino.h>
-//#include "MatrixMini.h"
-
 #include "movement.h"
-int roll;
+int roll, pitch;
 
 void setup()
 {
   Mini.begin(7.4);
-  Serial.begin(115200);
-  Serial.print("Starting...\n");
+  // Serial.begin(115200);
+  Cat.setMiniI2C(1);
 
   // layDown();
   // delay(2000);
   // standUp();
   // delay(2000);
-
   // standBy();
-  // delay(500);
+  // shakeHand();
+  // delay(2000);
+  // pushUp(5);
+  
   // warmUp();
   // delay(500);
   // pushUp(5);
@@ -26,11 +25,12 @@ void setup()
   // shakeHand();
   // delay(500);
 
-  // standBy();
+  warmUp(60);
+
+
   // delay(500);
   // stretchF();
   // delay(1500);
-  // standBy();
   // stretchB();
   // delay(1500);
 
@@ -39,17 +39,15 @@ void setup()
   // headDown();
   // test(5);
   // delay(500);
-  pushUp(5);
+  // pushUp(5);
+  // test(5);
 }
 
 void loop()
 {
-  // Serial.print("Roll=");
-  // Serial.println(Mini.I2C1.MXmotion.getRoll());
-  // Serial.print("Pitch=");
-  // Serial.println(Mini.I2C1.MXmotion.getPitch());
-  // Serial.println("============");
-  // delay(100);
+  standBy();
+
+  // test();
 
   // delay(200);
   // if (Mini.BTN1.get()){
@@ -58,6 +56,6 @@ void loop()
   // if (Mini.BTN2.get()){
   //   standBy();
   // }
-
-
 }
+
+
