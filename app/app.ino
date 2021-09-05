@@ -4,10 +4,12 @@ int roll, pitch;
 void setup()
 {
   Mini.begin(7.4);
-  // Serial.begin(115200);
-  Cat.setMiniI2C(1);
+  Serial.begin(115200);
+  // Head.setI2C(2);
+  Body.setI2C(1);
 
-  // layDown();
+  Serial.println("Begin ...");
+  layDown();
   // delay(2000);
   // standUp();
   // delay(2000);
@@ -15,19 +17,10 @@ void setup()
   // shakeHand();
   // delay(2000);
   // pushUp(5);
-  
-  // warmUp();
-  // delay(500);
-  // pushUp(5);
+  // delay(2000);
+  // warmUp(60);
 
-  // delay(500);
-  // standBy();
-  // shakeHand();
-  // delay(500);
-
-  warmUp(60);
-
-
+  // TODO
   // delay(500);
   // stretchF();
   // delay(1500);
@@ -46,16 +39,6 @@ void setup()
 void loop()
 {
   standBy();
+  
 
-  // test();
-
-  // delay(200);
-  // if (Mini.BTN1.get()){
-  //   walk();
-  // }
-  // if (Mini.BTN2.get()){
-  //   standBy();
-  // }
 }
-
-

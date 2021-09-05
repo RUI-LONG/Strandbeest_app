@@ -51,13 +51,23 @@
 // Basic Control
 class BodyParts {
     private:
-        MatrixServo MiniI2C;
+        MatrixServo BodyI2C;
     public:
-        void setMiniI2C(int i2cPort);
+        void setI2C(int i2cPort);
         void LeftF(int arm_angle, int hand_angle, int t=0);
         void LeftB(int arm_angle, int hand_angle, int t=0);
         void RightF(int arm_angle, int hand_angle, int t=0);
         void RightB(int arm_angle, int hand_angle, int t=0);
+};
+
+class HeadParts {
+    private:
+        PIXYCam HeadI2C;
+    public:
+        void setI2C(int i2cPort);
+        void detect();
+        void pitch(int ang=0);
+        void roll(int ang=0);
 };
 
 // Single Poses
@@ -82,10 +92,10 @@ void wiggleTail();
 
 void pushUp2(int cnt);
 
-void test(int cnt=1);
 void headDown(int ang=0);
 void headUp(int ang=0);
 
 void balance(int ang=0);
 
-extern BodyParts Cat;
+extern BodyParts Body;
+extern HeadParts Head;
