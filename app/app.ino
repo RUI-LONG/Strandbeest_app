@@ -9,16 +9,21 @@ void setup()
   Body.setI2C(1);
 
   Serial.println("Begin ...");
-  layDown();
+  // layDown();
   // delay(2000);
   // standUp();
   // delay(2000);
   // standBy();
+  // delay(2000);
   // shakeHand();
   // delay(2000);
   // pushUp(5);
   // delay(2000);
   // warmUp(60);
+
+  // Test
+  standUp();
+  delay(2000);
 
   // TODO
   // delay(500);
@@ -32,13 +37,13 @@ void setup()
   // headDown();
   // test(5);
   // delay(500);
-  // pushUp(5);
+  // pushUp(5);6
   // test(5);
 }
 
 void loop()
 {
-  standBy();
-  
+  // standBy();
+  // Head.detect();
 
 }

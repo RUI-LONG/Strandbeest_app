@@ -35,10 +35,10 @@ void HeadParts::detect(){
         if (HeadI2C.block.signature == detectSig){
             Serial.println("sig");
             Serial.println(HeadI2C.block.signature);
-            Serial.println("width");
-            Serial.println(HeadI2C.block.width);
-            Serial.println("height");
-            Serial.println(HeadI2C.block.height);
+            Serial.println("x");
+            Serial.println(HeadI2C.block.x);
+            Serial.println("y");
+            Serial.println(HeadI2C.block.y);
             // Serial.println(HeadI2C.block.x);
             // Serial.println(HeadI2C.block.y);
             Serial.println("====================");

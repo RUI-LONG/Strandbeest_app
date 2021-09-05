@@ -5,7 +5,7 @@ void layDown(int ang) {
   Body.RightF(RFAB, RFHF+10-ang);
   Body.LeftF(LFAB, LFHF-10+ang);
   delay(100);
-  Body.RightB(RBAF, RBHB+ang);
+  Body.RightB(RBAF, RBHB-5+ang);
   Body.LeftB(LBAF, LBHB-ang);
 }
 
@@ -38,10 +38,12 @@ void standBy() {
 }
 
 void shakeHand(int cnt){
-  layDown();
-  delay(500);
+  layDown(-20);
+  delay(1000);
   Body.RightF(90, RFHB);
-  Body.LeftF(90, LFHB);
+  Body.LeftF(90, 30);
+  Body.RightB(RBAF+20, RBHB-25);
+  Body.LeftB(LBAF-20, LBHB+20);
   delay(400);
 
   for (int i = 0; i < cnt; i++) {
