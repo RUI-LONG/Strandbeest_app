@@ -24,26 +24,30 @@ void standUp() {
 }
 
 void standBy() {
+  int bias = 10;
   Body.RightF(-1, RFHF+40);
   Body.LeftF(-1, LFHF-40);
   Body.RightB(-1, RBHB-40);
-  Body.LeftB(-1, LBHB+40);
+  Body.LeftB(-1, LBHB-bias+40);
   delay(100);
 
   Body.RightF(RFAM, -1);
-  Body.LeftF(LFAM, -1);
+  Body.LeftF(LFAM+bias, -1);
   Body.RightB(RBAM, -1);
-  Body.LeftB(LBAM, -1);
+  Body.LeftB(LBAM-bias, -1);
   delay(100);
 }
 
 void shakeHand(int cnt){
-  layDown(-20);
+  layDown(0);
   delay(1000);
   Body.RightF(90, RFHB);
   Body.LeftF(90, 30);
-  Body.RightB(RBAF+20, RBHB-25);
-  Body.LeftB(LBAF-20, LBHB+20);
+  // Body.RightB(RBAF+20, RBHB-25);
+  // Body.LeftB(LBAF-20, LBHB+20);
+  Body.RightB(RBAF, RBHB-5+20);
+  Body.LeftB(LBAF, LBHB-20);
+
   delay(400);
 
   for (int i = 0; i < cnt; i++) {
@@ -66,7 +70,7 @@ void pushUp(int cnt) {
     Body.LeftF(LFAM, 80);
     delay(1200);
 
-    Body.RightF(90, RFHB);
+    Body.RightF(90, RFHB-10);
     Body.LeftF(90, LFHB);
 
     Body.LeftB(150, -1);
@@ -75,22 +79,6 @@ void pushUp(int cnt) {
   }
   delay(10);
   standUp();
-}
-
-
-
-void wiggleTail() {
-  for (int i = 150; i > 30; i--) {
-    Mini.RC1.set(i);
-    delay(5);
-  }
-
-  delay(50);
-  for (int i = 30; i < 150; i++) {
-    Mini.RC1.set(i);
-    delay(5);
-  }
-  delay(50);
 }
 
 void stretchF(){
@@ -172,24 +160,25 @@ void flip(){
 
 }
 
-void pushUp2(int cnt){
-  // standBy before buttUp
-  standBy();
-  Mini.I2C2.MXservo.setAngle(right_forward_arm, RFAM-10);
-  Mini.I2C2.MXservo.setAngle(left_forward_arm, LFAM+10);
-  delay(100);
-  
-  int t = 30;
-  for (int i = 0; i < cnt; i++) {
-    Mini.I2C2.MXservo.setAngle(right_forward_hand, RFHF+40+t);
-    Mini.I2C2.MXservo.setAngle(left_forward_hand, LFHF-40-t);
-    delay(500);
-    Mini.I2C2.MXservo.setAngle(right_forward_hand, RFHF);
-    Mini.I2C2.MXservo.setAngle(left_forward_hand, LFHF);
-    delay(500);
-  }
-  standBy();
-  delay(300);
+unsigned long oldT;
+
+void walk(int cnt){
+  oldT = millis();
+  Body.LeftB(-1, LBHB+60);
+  Body.RightB(-1, RBHB-40);
+  Body.LeftF(-1, LFHF);
+  delay(50);
+  Body.LeftF(80, -1);
+
+  // Body.RightB(95+50, -1);
+  // Body.RightB(-1, RBHB-40);
+
+  // Body.RightF(110-50, -1);
+  // Body.RightF(-1, RFHF+40);
+
+  // Body.LeftB(90-50, -1);
+  // Body.LeftB(-1, LBHB+40);
+
 }
 
 void headDown(int ang){

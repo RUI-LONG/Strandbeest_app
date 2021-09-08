@@ -3,27 +3,30 @@ int roll, pitch;
 
 void setup()
 {
-  Mini.begin(7.4);
-  Serial.begin(115200);
-  // Head.setI2C(2);
+  Mini.begin(7.4, 1);
+  Head.setI2C(2);
+
+  // Serial.begin(115200);
   Body.setI2C(1);
 
   Serial.println("Begin ...");
-  // layDown();
-  // delay(2000);
-  // standUp();
-  // delay(2000);
-  // standBy();
-  // delay(2000);
-  // shakeHand();
-  // delay(2000);
-  // pushUp(5);
-  // delay(2000);
-  // warmUp(60);
 
-  // Test
+  layDown();
+  delay(2000);
   standUp();
   delay(2000);
+  standBy();
+  delay(2000);
+  shakeHand();
+  delay(2000);
+  pushUp(5);
+  delay(2000);
+  warmUp(60);
+
+  // Test
+  // standBy();
+  // delay(500);
+  // walk();
 
   // TODO
   // delay(500);
@@ -32,7 +35,6 @@ void setup()
   // stretchB();
   // delay(1500);
 
-  // walk
   
   // headDown();
   // test(5);

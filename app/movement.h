@@ -1,4 +1,4 @@
-//#pragma once
+#pragma once
 #include <MatrixMini.h>
 
 
@@ -70,6 +70,7 @@ class HeadParts {
         void roll(int ang=0);
 };
 
+
 // Single Poses
 void layDown(int ang=20);
 void standUp();
@@ -86,11 +87,11 @@ void stretchF();
 void stretchB();
 
 // TODO
-void walk();
 void flip();
-void wiggleTail();
+void pushUp(int cnt=5);
 
-void pushUp2(int cnt);
+
+void walk(int cnt=1);
 
 void headDown(int ang=0);
 void headUp(int ang=0);
