@@ -12,21 +12,31 @@ void setup()
   Serial.println("Begin ...");
 
   layDown();
-  delay(2000);
+  delay(1500);
   standUp();
-  delay(2000);
+  delay(1500);
+  warmUp(40);
+  delay(500);
+
   standBy();
   delay(2000);
-  shakeHand();
-  delay(2000);
   pushUp(5);
+  delay(1000);
+  
+  standBy();
   delay(2000);
-  warmUp(60);
+  shakeHand(6);
+  delay(500);
+  standBy();
 
-  // Test
-  // standBy();
-  // delay(500);
-  // walk();
+  for (int i = 0; i < 5; i++) {
+    headDown();
+    delay(400);
+    headUp();
+    delay(400);
+  }
+  layDown();
+
 
   // TODO
   // delay(500);
@@ -35,12 +45,8 @@ void setup()
   // stretchB();
   // delay(1500);
 
-  
-  // headDown();
-  // test(5);
-  // delay(500);
-  // pushUp(5);6
-  // test(5);
+  // Test
+  // walk();
 }
 
 void loop()

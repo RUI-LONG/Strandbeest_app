@@ -88,8 +88,6 @@ void stretchB();
 
 // TODO
 void flip();
-void pushUp(int cnt=5);
-
 
 void walk(int cnt=1);
 

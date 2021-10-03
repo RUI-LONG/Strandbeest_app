@@ -43,8 +43,6 @@ void shakeHand(int cnt){
   delay(1000);
   Body.RightF(90, RFHB);
   Body.LeftF(90, 30);
-  // Body.RightB(RBAF+20, RBHB-25);
-  // Body.LeftB(LBAF-20, LBHB+20);
   Body.RightB(RBAF, RBHB-5+20);
   Body.LeftB(LBAF, LBHB-20);
 
@@ -56,59 +54,46 @@ void shakeHand(int cnt){
     Body.RightF(90+20, RFHB);
     delay(500);
   }
+
+  Body.RightF(90, RFHB);
+  Body.LeftF(90, 30);
+  Body.RightB(RBAF, RBHB-5+20);
+  Body.LeftB(LBAF, LBHB-20);
 }
 
 void pushUp(int cnt) {
-  Body.RightF(90, RFHB);
   Body.LeftF(90, LFHB);
-  Body.RightB(RBAB, RBHF);
   Body.LeftB(LBAB, LBHF);
+  Body.RightF(95, RFHB);
+  Body.RightB(RBAB+5, RBHF);
   delay(1000);
-
   for (int i = 0; i < cnt; i++) {
     Body.RightF(RFAM, 90);
     Body.LeftF(LFAM, 80);
     delay(1200);
 
-    Body.RightF(90, RFHB-10);
+    Body.RightF(95, RFHB-5);
     Body.LeftF(90, LFHB);
-
-    Body.LeftB(150, -1);
-    Body.RightB(40, -1);
     delay(1200);
   }
   delay(10);
-  standUp();
 }
 
 void stretchF(){
-  standUp();
-  delay(800);
-  Mini.I2C2.MXservo.setAngle(right_forward_arm, 90-30);
-  Mini.I2C2.MXservo.setAngle(right_forward_hand, RFHF);
-  delay(300);
-
-  for (int i = 0; i < 10; i++) {
-    Mini.I2C2.MXservo.setAngle(right_forward_arm, RFAF-60+6*10);
-    Mini.I2C2.MXservo.setAngle(right_forward_hand, RFHB-60+6*10);
-
-    Mini.I2C2.MXservo.setAngle(left_forward_arm, LFHB+60-6*10);
-    Mini.I2C2.MXservo.setAngle(left_forward_hand, LFHB+60-6*10);
-    delay(30);
-  }
+  // TODO
+  // standUp();
+  // delay(800);
+  // Body.LeftF(90, LFHB);
+  // Body.RightF(95, RFHB);
 }
 
 void stretchB(){
-  standUp();
-  delay(800);
-  for (int i = 0; i < 10; i++) {
-    Mini.I2C2.MXservo.setAngle(left_backward_arm, RFAF-60+6*10);
-    Mini.I2C2.MXservo.setAngle(left_backward_hand, RFHB-60+6*10);
+  // TODO
+  // standUp();
+  // delay(800);
+  // Body.LeftB(LBAB, LBHF);
+  // Body.RightB(RBAB+5, RBHF);
 
-    Mini.I2C2.MXservo.setAngle(right_backward_arm, LFHB+60-6*10);
-    Mini.I2C2.MXservo.setAngle(right_backward_hand, LFHB+60-6*10);
-    delay(30);
-  }
 }
 
 void warmUp(int ang){
