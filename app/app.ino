@@ -28,6 +28,7 @@ void setup()
   shakeHand(6);
   delay(500);
   standBy();
+  delay(1500);
 
   for (int i = 0; i < 5; i++) {
     headDown();
